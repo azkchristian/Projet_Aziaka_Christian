@@ -1,5 +1,6 @@
 package org.formation.projet_aziaka_christian.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,7 @@ public class Client {
     private String phone;
 
     @ManyToOne
+    @JsonIgnore
     private Advisor advisor;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)

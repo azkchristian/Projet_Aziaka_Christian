@@ -16,5 +16,8 @@ public interface AccountService {
     Account save(Account account);
 
     Account credit(Long accountId, double amount);
+    Account debit(Long accountId, double amount);
+    Account transfer(Long fromId, Long toId, double amount);
+    Account findByAccountNumber(String accountNumber);
 
 }
