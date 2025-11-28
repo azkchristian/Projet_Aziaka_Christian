@@ -31,6 +31,18 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public Account credit(Long accountId, double amount) {
+
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() -> new RuntimeException("No accoutn with ID: " + accountId));
+
+        account.setBalance(account.getBalance().add(java.math.BigDecimal.valueOf(amount)));
+
+        return accountRepository.save(account);
+    }
+
+
+    @Override
     public List<Account> getAccountsByClientId(Long clientId) {
 
         Client client = clientRepository.findById(clientId)

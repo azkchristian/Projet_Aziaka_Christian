@@ -14,4 +14,7 @@ public interface AccountService {
     Optional<Account> findById(Long id);
 
     Account save(Account account);
+
+    Account credit(Long accountId, double amount);
+
 }

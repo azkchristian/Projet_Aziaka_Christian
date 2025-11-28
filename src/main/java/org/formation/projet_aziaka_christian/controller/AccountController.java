@@ -15,7 +15,6 @@ public class AccountController {
 
     private final AccountService accountService;
 
-    // Créer un compte pour un client
     @PostMapping("/client/{clientId}")
     public ResponseEntity<Account> createAccount(
             @PathVariable Long clientId,
@@ -24,7 +23,6 @@ public class AccountController {
         return ResponseEntity.ok(accountService.createAccount(clientId, account));
     }
 
-    // Lister les comptes d'un client
     @GetMapping("/client/{clientId}")
     public ResponseEntity<?> listAccounts(@PathVariable Long clientId) {
         try {
@@ -33,4 +31,17 @@ public class AccountController {
             return ResponseEntity.status(404).body(e.getMessage());
         }
     }
+
+    @PostMapping("/{accountId}/credit")
+    public ResponseEntity<?> credit(
+            @PathVariable Long accountId,
+            @RequestParam double amount
+    ) {
+        try {
+            return ResponseEntity.ok(accountService.credit(accountId, amount));
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+
 }
