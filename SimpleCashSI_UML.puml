@@ -1,0 +1,33 @@
+
+@startuml
+title SimpleCashSI - Diagramme UML
+
+class Client {
+  Long id
+  String firstName
+  String lastName
+  Advisor advisor
+}
+
+class Advisor {
+  Long id
+  String firstName
+  String lastName
+}
+
+class Account {
+  Long id
+  String accountNumber
+  BigDecimal balance
+  AccountType type
+}
+
+enum AccountType {
+  CURRENT
+  SAVINGS
+}
+
+Client "1" --> "many" Account : owns >
+Advisor "1" --> "many" Client : manages >
+
+@enduml
