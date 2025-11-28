@@ -1,6 +1,6 @@
 package org.formation.projet_aziaka_christian.model;
 
-public enum AccountType {
+public enum     AccountType {
     CURRENT,
     SAVINGS
 }

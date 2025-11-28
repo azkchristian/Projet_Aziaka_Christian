@@ -1,9 +1,15 @@
 package org.formation.projet_aziaka_christian.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.formation.projet_aziaka_christian.dto.AccountDTO;
+import org.formation.projet_aziaka_christian.mapper.AccountMapper;
+import org.formation.projet_aziaka_christian.model.Account;
 import org.formation.projet_aziaka_christian.service.AuditService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,11 +35,21 @@ public class AuditController {
 
     @GetMapping("/positive")
     public ResponseEntity<?> getPositiveAccounts() {
-        return ResponseEntity.ok(auditService.getPositiveAccounts());
+        List<Account> accounts = auditService.getPositiveAccounts();
+        List<AccountDTO> result = new ArrayList<>();
+        for (Account a : accounts) {
+            result.add(AccountMapper.toDTO(a));
+        }
+        return ResponseEntity.ok(result);
     }
 
     @GetMapping("/negative")
     public ResponseEntity<?> getNegativeAccounts() {
-        return ResponseEntity.ok(auditService.getNegativeAccounts());
+        List<Account> accounts = auditService.getNegativeAccounts();
+        List<AccountDTO> result = new ArrayList<>();
+        for (Account a : accounts) {
+            result.add(AccountMapper.toDTO(a));
+        }
+        return ResponseEntity.ok(result);
     }
 }

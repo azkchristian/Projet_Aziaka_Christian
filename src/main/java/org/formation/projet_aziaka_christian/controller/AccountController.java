@@ -1,11 +1,14 @@
 package org.formation.projet_aziaka_christian.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.formation.projet_aziaka_christian.dto.AccountDTO;
+import org.formation.projet_aziaka_christian.mapper.AccountMapper;
 import org.formation.projet_aziaka_christian.model.Account;
 import org.formation.projet_aziaka_christian.service.AccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,7 +24,8 @@ public class AccountController {
             @RequestBody Account account
     ) {
         try {
-            return ResponseEntity.ok(accountService.createAccount(clientId, account));
+            Account created = accountService.createAccount(clientId, account);
+            return ResponseEntity.ok(AccountMapper.toDTO(created));
         } catch (RuntimeException e) {
 
             if (e.getMessage().contains("Client not found")) {
@@ -40,7 +44,11 @@ public class AccountController {
     public ResponseEntity<?> listAccounts(@PathVariable Long clientId) {
         try {
             List<Account> accounts = accountService.getAccountsByClientId(clientId);
-            return ResponseEntity.ok(accounts);
+            List<AccountDTO> result = new ArrayList<>();
+            for (Account a : accounts) {
+                result.add(AccountMapper.toDTO(a));
+            }
+            return ResponseEntity.ok(result);
         } catch (RuntimeException e) {
 
             if (e.getMessage().contains("Client not found")) {
@@ -57,7 +65,8 @@ public class AccountController {
             @RequestParam double amount
     ) {
         try {
-            return ResponseEntity.ok(accountService.credit(accountId, amount));
+            Account updated = accountService.credit(accountId, amount);
+            return ResponseEntity.ok(AccountMapper.toDTO(updated));
         } catch (RuntimeException e) {
 
             if (e.getMessage().contains("not found")) {
@@ -74,7 +83,8 @@ public class AccountController {
             @RequestParam double amount
     ) {
         try {
-            return ResponseEntity.ok(accountService.debit(accountId, amount));
+            Account updated = accountService.debit(accountId, amount);
+            return ResponseEntity.ok(AccountMapper.toDTO(updated));
         } catch (RuntimeException e) {
 
             if (e.getMessage().contains("not found")) {
@@ -85,7 +95,6 @@ public class AccountController {
         }
     }
 
-
     @PostMapping("/transfer")
     public ResponseEntity<?> transfer(
             @RequestParam Long fromId,
@@ -93,7 +102,8 @@ public class AccountController {
             @RequestParam double amount
     ) {
         try {
-            return ResponseEntity.ok(accountService.transfer(fromId, toId, amount));
+            Account receiver = accountService.transfer(fromId, toId, amount);
+            return ResponseEntity.ok(AccountMapper.toDTO(receiver));
         } catch (RuntimeException e) {
 
             if (e.getMessage().contains("not found")) {

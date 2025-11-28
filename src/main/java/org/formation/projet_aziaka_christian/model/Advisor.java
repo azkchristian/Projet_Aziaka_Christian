@@ -1,6 +1,5 @@
 package org.formation.projet_aziaka_christian.model;
 
-
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +21,8 @@ public class Advisor {
 
     @OneToMany(mappedBy = "advisor")
     private List<Client> clients = new ArrayList<>();
+
+    public String getName() {
+        return firstName + " " + lastName;
+    }
 }

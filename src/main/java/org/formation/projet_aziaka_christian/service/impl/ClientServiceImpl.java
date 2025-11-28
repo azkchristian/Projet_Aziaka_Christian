@@ -32,18 +32,23 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Client save(Client client) {
 
-        Client client1 = clientRepository.findByFirstNameAndLastName(
-                client.getFirstName(),
-                client.getLastName()
-        );
+        if (client.getId() == null) {
 
-        if (client1 != null) {
-            throw new RuntimeException("Client already exists : "
-                    + client.getFirstName() + " " + client.getLastName());
+            List<Client> all = clientRepository.findAll();
+            for (Client c : all) {
+                if (c.getLastName().equalsIgnoreCase(client.getLastName())
+                        && c.getFirstName().equalsIgnoreCase(client.getFirstName())) {
+                    throw new RuntimeException("Client already exists : "
+                            + client.getFirstName() + " " + client.getLastName());
+                }
+            }
+
+            return clientRepository.save(client);
         }
 
         return clientRepository.save(client);
     }
+
 
     @Override
     public void deleteById(Long id) {
