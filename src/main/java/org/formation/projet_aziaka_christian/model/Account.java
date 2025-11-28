@@ -1,4 +1,5 @@
 package org.formation.projet_aziaka_christian.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -29,5 +30,7 @@ public class Account {
     private BigDecimal interestRate;
 
     @ManyToOne
+    @JsonIgnore
     private Client client;
+
 }
