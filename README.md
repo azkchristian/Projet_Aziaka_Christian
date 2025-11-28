@@ -8,50 +8,51 @@
 
 Le projet suit une architecture en couches classique :
 
-- **Couche présentation (REST / Controllers)**
-  - `ClientController`
-  - `AccountController`
-  - `AdvisorController`
-  - `AuditController`
+### 🟦 Couche présentation (REST / Controllers)
+- `ClientController`
+- `AccountController`
+- `AdvisorController`
+- `AuditController`
 
-- **Couche métier (Services)**
-  - Interfaces : `ClientService`, `AdvisorService`, `AccountService`, `AuditService`
-  - Implémentations : `ClientServiceImpl`, `AdvisorServiceImpl`, `AccountServiceImpl`, `AuditServiceImpl`
+### 🟥 Couche métier (Services)
+- Interfaces : `ClientService`, `AdvisorService`, `AccountService`, `AuditService`
+- Implémentations :  
+  `ClientServiceImpl`, `AdvisorServiceImpl`, `AccountServiceImpl`, `AuditServiceImpl`
 
-- **Couche données (Repositories)**
-  - `ClientRepository`
-  - `AdvisorRepository`
-  - `AccountRepository`
+### 🟩 Couche données (Repositories)
+- `ClientRepository`
+- `AdvisorRepository`
+- `AccountRepository`
 
-- **Couche persistante (Entities JPA)**
-  - `Client`
-  - `Advisor`
-  - `Account`
-  - `AccountType`
+### 🟧 Entités JPA (données persistées)
+- `Client`
+- `Advisor`
+- `Account`
+- `AccountType`
 
-- **Couche DTO + Mappers**
-  - `ClientDTO`, `AdvisorDTO`, `AccountDTO`
-  - `ClientMapper`, `AdvisorMapper`, `AccountMapper`
+### 🟨 DTO & Mappers
+- DTO : `ClientDTO`, `AdvisorDTO`, `AccountDTO`
+- Mappers : `ClientMapper`, `AdvisorMapper`, `AccountMapper`
 
-- **Technologies**
-  - Spring Boot 3.5.8
-  - Spring Web
-  - Spring Data JPA
-  - H2 Database (en mémoire)
-  - Lombok
-  - Swagger (OpenAPI)
+### 🟪 Technologies utilisées
+- Spring Boot 3.5.8
+- Spring Web
+- Spring Data JPA
+- H2 Database (in memory)
+- Lombok
+- Swagger / OpenAPI
 
 ---
 
-## 2. Diagramme UML (classes métier)
+## 2. Diagramme UML
 
-Le diagramme PlantUML se trouve dans `diagramme.puml`.
+Le diagramme UML complet se trouve dans le fichier `diagramme.puml`.
 
-Il présente :
-- Les entités
+Il représente :
+- Les entités métier
 - Les relations OneToMany / ManyToOne
-- Le type de compte (enum)
-- Les liens entre clients, comptes et conseillers
+- L'enum `AccountType`
+- Les dépendances entre Client, Advisor et Account
 
 ---
 
@@ -61,86 +62,125 @@ Il présente :
 En tant que **conseiller**, je veux créer un client pour pouvoir lui ouvrir des comptes.
 
 ### US2 – Consultation des clients
-En tant que **conseiller**, je veux consulter les clients et leurs informations.
+En tant que **conseiller**, je veux consulter les clients et leurs informations complètes.
 
 ### US3 – Attribution d’un conseiller
-En tant que **conseiller**, je veux être attribué à un client (max 10 clients par conseiller).
+En tant que **conseiller**, je veux être attribué à un client (max 10 clients / conseiller).
 
 ### US4 – Création d’un compte
 En tant que **conseiller**, je veux créer des comptes (courant/épargne) pour mes clients.
 
 ### US5 – Crédit / Débit
-En tant que **conseiller**, je veux créditer ou débiter un compte selon ses règles :
-- Courant : découvert possible dans la limite autorisée.
-- Épargne : solde jamais négatif.
+En tant que **conseiller**, je veux créditer ou débiter un compte selon ses règles métier :
+- Courant : découvert autorisé
+- Épargne : jamais négatif
 
 ### US6 – Virement standard
-Virement entre deux comptes si le solde permet l’opération.
+Faire un virement entre deux comptes.
 
 ### US7 – Virement par conseiller (advisor transfer)
-Un conseiller peut transférer entre **deux comptes appartenant à ses clients** uniquement.
+Un conseiller peut transférer *depuis un compte appartenant à un de ses clients* vers n’importe quel compte.
 
 ### US8 – Modification d’un client par son conseiller
 Un conseiller peut modifier **uniquement ses propres clients**.
 
 ### US9 – Suppression d’un client
-Possible seulement si **tous ses comptes ont un solde = 0**.
+Suppression possible seulement si **tous ses comptes ont un solde = 0**.
 
 ### US10 – Audit global
-L’administrateur peut consulter :
-- le solde global,
-- la liste des comptes positifs ou négatifs.
+Lister :
+- le solde total,
+- le nombre de comptes positifs,
+- le nombre de comptes négatifs.
 
 ---
 
 ## 4. Bilan du projet
 
-### Fonctionnalités implémentées
+### ✔ Fonctionnalités implémentées
+
 - CRUD Client + DTO
 - CRUD Advisor + DTO
-- Création de compte (courant/épargne)
-- Crédit / Débit / Virement
-- Transfert entre comptes du même conseiller
-- Audit : total, positifs, négatifs
-- Suppression sécurisée d’un client
-- MapStruct-like mappers simples (faits main)
-- Swagger UI
-- H2-console
+- Comptes bancaires (courant / épargne)
+- Crédit, débit, virement classique
+- Virement spécial conseiller (`advisorTransfer`)
+- Audit complet (solde total, comptes positifs / négatifs)
+- Suppression client sécurisée
+- DTO + Mappers pour éviter d’exposer les entités
+- Swagger + H2-console
 
 ---
 
-### Difficultés rencontrées
-- Mauvaise configuration du pom → H2-console inaccessible  
-  **Solution :** nettoyer et corriger le pom.xml.
-- Boucles infinies JSON entre entités  
-  **Solution :** utilisation de DTO.
-- Problème lors de l’update client (doublon)  
-  **Solution :** différencier création / mise à jour dans `save()`.
-- Gestion du découvert / règles métier complexes  
-  **Solution :** implémentation simple et progressive dans les services.
+## Difficultés rencontrées
+
+### 🟧 Difficulté 1 — Configuration H2 et Maven
+La H2-console ne fonctionnait pas à cause d’une mauvaise configuration du `pom.xml`  
+(starter webmvc au lieu de starter web).
+
+➡ **Solution :** correction complète du pom.xml + activation H2.
 
 ---
 
-### Reste à faire / améliorations
-- Ajout de validation (`@NotNull`, `@Size`) dans les DTO.
-- Sécurisation via Spring Security.
-- Tests unitaires (JUnit & Mockito).
-- Logs d’audit avancés sur les opérations bancaires.
-- Interface front-end simple.
+### 🟧 Difficulté 2 — Boucles JSON infinies
+Liaison Client → Accounts → Client → Advisor → etc.  
+Cela provoquait des boucles d’objets en JSON.
+
+➡ **Solution :** utilisation de DTO + Mappers simples.
 
 ---
 
-## 5. Annexes
+### 🟧 Difficulté 3 — Gestion création / modification Client
+La règle "Client already exists" empêchait l’update d’un client existant.
 
-### Swagger UI
-Disponible après lancement du projet :  
-👉 http://localhost:8080/swagger-ui/index.html
+➡ **Solution :** distinguer création (`id == null`) et mise à jour (`id != null`).
 
-### H2 Console
-👉 http://localhost:8080/h2-console  
-JDBC : `jdbc:h2:mem:testdb`
+---
+
+### 🟥 Difficulté 4 — Règles métier complexes des comptes
+Découvert, interdiction de solde négatif, virement, transferts → complexité.
+
+➡ **Solution :** coder des règles progressives dans `AccountServiceImpl`.
+
+---
+
+### 🟥 Difficulté 5 — Fonction "transfert conseiller" (LA PLUS DIFFICILE)
+La fonctionnalité où un conseiller peut effectuer un virement **depuis un compte appartenant à un de ses clients**  
+vers n’importe quel autre compte a été la partie la plus compliquée à implémenter.
+
+Les problèmes rencontrés :
+
+- vérifier correctement que le conseiller est bien assigné au compte source,
+- gérer le solde, le découvert, les erreurs métier,
+- ne pas exiger que le compte destination appartienne au même conseiller,
+- gérer les cas d’erreur 400 / 403 / 404,
+- gérer les types de compte (CURRENT vs SAVINGS).
+
+’ai vraiment galéré à implémenter cette fonction**, elle m’a pris beaucoup de temps.  
+ J’ai réussi à produire une version fonctionnelle et propre, mais elle pourrait être améliorée avec plus de recul et de temps.
+
+---
+
+## 5. Reste à faire / améliorations
+
+- Ajouter Bean Validation (`@NotNull`, `@Size`, `@Email`, etc.)
+- Ajouter Spring Security avec rôles conseillers / admin
+- Écrire des tests unitaires (JUnit + Mockito)
+- Ajouter du logging d’audit (transferts, modifications sensibles)
+- Développer un petit front-end ou une interface web
+- Ajouter gestion d’historique des opérations
+
+---
+
+## 6. Annexes
+
+### 🚀 Swagger UI
+http://localhost:8080/swagger-ui/index.html
+
+### 🗄 H2 Console
+http://localhost:8080/h2-console  
+**JDBC URL :** `jdbc:h2:mem:testdb`  
+User : `sa` | Password : *(vide)*
 
 ---
 
 **Fin du document**
-
