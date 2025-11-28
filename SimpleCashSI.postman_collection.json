@@ -1,0 +1,899 @@
+{
+	"info": {
+		"_postman_id": "a6bb872e-1b79-4250-9266-7b7dc7883455",
+		"name": "SimpleCashSI",
+		"description": "Collection complète pour tester l'API SimpleCashSI.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50380205",
+		"_collection_link": "https://azkchristian-1df15641-879094.postman.co/workspace/Christian-Aziaka's-Workspace~eb94bbbe-7073-42f9-87d5-b8a8cd831802/collection/50380205-a6bb872e-1b79-4250-9266-7b7dc7883455?action=share&source=collection_link&creator=50380205"
+	},
+	"item": [
+		{
+			"name": "CLIENT - Create Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Jean\",\n  \"lastName\": \"Martin\",\n  \"city\": \"Paris\",\n  \"address\": \"12 rue X\",\n  \"zipCode\": \"75000\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLIENT - Create Client Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"maitre\",\n  \"lastName\": \"apagnan\",\n  \"city\": \"Paris\",\n  \"address\": \"12 rue X\",\n  \"zipCode\": \"75000\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLIENT - Get All Clients",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLIENT - Get Client by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLIENT - Delete Client",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clients/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADVISOR - Create Advisor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"Paul\",\n  \"lastName\": \"Dupont\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/advisors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"advisors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADVISOR - Create Advisor Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"firstName\": \"chef \",\n  \"lastName\": \"crampté\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/advisors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"advisors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADVISOR - List Advisors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/advisors",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"advisors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADVISOR - Get Advisor by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/advisors/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"advisors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADVISOR - Get Clients for Advisor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/advisors/1/clients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"advisors",
+						"1",
+						"clients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADVISOR - Delete Advisor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/advisors/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"advisors",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLIENT - List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clients/1/advisor/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients",
+						"1",
+						"advisor",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CLIENT - Assign Advisor to Client Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clients/1/advisor/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clients",
+						"1",
+						"advisor",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACCOUNT - Create Account for Client",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"accountNumber\": \"FR123\",\n  \"balance\": 1000,\n  \"type\": \"CURRENT\",\n  \"overdraftLimit\": 500\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/client/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"client",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACCOUNT - List Accounts for Client",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/client/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"client",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACCOUNT - Credit Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/1/credit?amount=200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"1",
+						"credit"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACCOUNT - Debit Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/1/debit?amount=100",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"1",
+						"debit"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACCOUNT - Transfer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/accounts/transfer?fromId=1&toId=2&amount=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"accounts",
+						"transfer"
+					],
+					"query": [
+						{
+							"key": "fromId",
+							"value": "1"
+						},
+						{
+							"key": "toId",
+							"value": "2"
+						},
+						{
+							"key": "amount",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUDIT - Total Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/total",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"total"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUDIT - Positive Accounts Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/positive/count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"positive",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUDIT - Negative Accounts Count",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/negative/count",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"negative",
+						"count"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Advisor updates one of his clients",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 3187,\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"city\": \"string\",\n  \"address\": \"string\",\n  \"zipCode\": \"string\",\n  \"advisorId\": 747\n}",
+					"options": {
+						"raw": {
+							"headerFamily": "json",
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/advisors/:advisorId/clients/:clientId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"advisors",
+						":advisorId",
+						"clients",
+						":clientId"
+					],
+					"variable": [
+						{
+							"key": "advisorId",
+							"value": "6406"
+						},
+						{
+							"key": "clientId",
+							"value": "6406"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUDIT - List Positive Accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/positive",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"positive"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Advisor deletes one of his clients (balance == 0)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/advisors/:advisorId/clients/:clientId",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"advisors",
+						":advisorId",
+						"clients",
+						":clientId"
+					],
+					"variable": [
+						{
+							"key": "advisorId",
+							"value": "6406"
+						},
+						{
+							"key": "clientId",
+							"value": "6406"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Deleted",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/advisors/:advisorId/clients/:clientId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"advisors",
+								":advisorId",
+								"clients",
+								":clientId"
+							],
+							"variable": [
+								{
+									"key": "advisorId"
+								},
+								{
+									"key": "clientId"
+								}
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Non-zero balance",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/advisors/:advisorId/clients/:clientId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"advisors",
+								":advisorId",
+								"clients",
+								":clientId"
+							],
+							"variable": [
+								{
+									"key": "advisorId"
+								},
+								{
+									"key": "clientId"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not allowed",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/advisors/:advisorId/clients/:clientId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"advisors",
+								":advisorId",
+								"clients",
+								":clientId"
+							],
+							"variable": [
+								{
+									"key": "advisorId"
+								},
+								{
+									"key": "clientId"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Advisor transfers money between his clients' accounts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/advisors/:advisorId/transfer?fromAccountId=6406&toAccountId=6406&amount=9421.682273644632",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"advisors",
+						":advisorId",
+						"transfer"
+					],
+					"query": [
+						{
+							"key": "fromAccountId",
+							"value": "6406"
+						},
+						{
+							"key": "toAccountId",
+							"value": "6406"
+						},
+						{
+							"key": "amount",
+							"value": "9421.682273644632"
+						}
+					],
+					"variable": [
+						{
+							"key": "advisorId",
+							"value": "6406"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Transfer OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/advisors/:advisorId/transfer?fromAccountId=6406&toAccountId=6406&amount=9421.682273644632",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"advisors",
+								":advisorId",
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "fromAccountId",
+									"value": "6406"
+								},
+								{
+									"key": "toAccountId",
+									"value": "6406"
+								},
+								{
+									"key": "amount",
+									"value": "9421.682273644632"
+								}
+							],
+							"variable": [
+								{
+									"key": "advisorId"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Advisor not allowed",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/advisors/:advisorId/transfer?fromAccountId=6406&toAccountId=6406&amount=9421.682273644632",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"advisors",
+								":advisorId",
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "fromAccountId",
+									"value": "6406"
+								},
+								{
+									"key": "toAccountId",
+									"value": "6406"
+								},
+								{
+									"key": "amount",
+									"value": "9421.682273644632"
+								}
+							],
+							"variable": [
+								{
+									"key": "advisorId"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Account not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/advisors/:advisorId/transfer?fromAccountId=6406&toAccountId=6406&amount=9421.682273644632",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"advisors",
+								":advisorId",
+								"transfer"
+							],
+							"query": [
+								{
+									"key": "fromAccountId",
+									"value": "6406"
+								},
+								{
+									"key": "toAccountId",
+									"value": "6406"
+								},
+								{
+									"key": "amount",
+									"value": "9421.682273644632"
+								}
+							],
+							"variable": [
+								{
+									"key": "advisorId"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "AUDIT - List Negative Accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/audit/negative",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"audit",
+						"negative"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -102,6 +102,28 @@
                 throw new RuntimeException("Unknown account type for account: " + accountId);
             }
         }
+        @Override
+        public Account advisorTransfer(Long advisorId, Long fromId, Long toId, double amount) {
+
+            Account from = accountRepository.findById(fromId)
+                    .orElseThrow(() -> new RuntimeException("Account not found: " + fromId));
+
+            Account to = accountRepository.findById(toId)
+                    .orElseThrow(() -> new RuntimeException("Account not found: " + toId));
+
+            if (from.getClient().getAdvisor() == null ||
+                    !from.getClient().getAdvisor().getId().equals(advisorId)) {
+                throw new RuntimeException("Advisor not allowed for this source account");
+            }
+
+            if (to.getClient().getAdvisor() == null ||
+                    !to.getClient().getAdvisor().getId().equals(advisorId)) {
+                throw new RuntimeException("Advisor not allowed for this target account");
+            }
+
+            debit(fromId, amount);
+            return credit(toId, amount);
+        }
 
         @Override
         public List<Account> getAccountsByClientId(Long clientId) {

@@ -19,5 +19,6 @@ public interface AccountService {
     Account debit(Long accountId, double amount);
     Account transfer(Long fromId, Long toId, double amount);
     Account findByAccountNumber(String accountNumber);
+    Account advisorTransfer(Long advisorId, Long fromId, Long toId, double amount);
 
 }
